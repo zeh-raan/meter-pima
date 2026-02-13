@@ -15,3 +15,12 @@ git push origin <branch-name>
 # Update your main repo
 git checkout <branch-name>
 git pull origin main
+
+## Basically
+
+1. Download [SQLite JDBC](https://github.com/xerial/sqlite-jdbc/releases/tag/3.51.2.0) here!
+
+2. Run the system
+    ```bash
+    java -classpath ".:sqlite-jdbc-3.51.2.0.jar" Main.java
+    ```
