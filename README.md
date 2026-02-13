@@ -1,8 +1,8 @@
 # meter-pima
 A small fast food shop java application software.
 
-# Clone Repo Locally
-git clone https://github.com/zeh-raan/meter-pima.git
+# Fork your own Fork
+git clone https://github.com/yourname/meter-pima.git
 
 # Makes personal changes on branches
 git checkout -b <branch-name>
