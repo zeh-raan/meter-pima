@@ -3,6 +3,13 @@ public class Food extends MenuItem {
         super(itemId, name, price);
     }
 
+    public void displayItem() {
+        System.out.println(getDetails());
+    }
+
+    public void updatePrice(float newPrice) {
+        setPrice(newPrice);
+    }
     // Abstract from MenuItem
     @Override
     public String getDetails() {
