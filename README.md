@@ -25,7 +25,7 @@ Follow these steps to be able to run the application properly.
 
 3. **Run the application.**
     ```bash
-    java -classpath ".:sqlite-jdbc-3.51.2.0.jar" Main.java
+    java -classpath ".:sqlite-jdbc-3.51.2.0.jar" --enable-native-access=ALL-UNNAMED Main.java
     ```
 ## **System Flow**
 | Layer             | Role                                             |
