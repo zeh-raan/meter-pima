@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import model.CanRestock;
+import model.CanManageInventory;
 import model.Drink;
 import model.Food;
 import model.MenuSnackItem;
@@ -109,7 +109,11 @@ public class InventoryPanel extends JPanel {
                         ? new Food(0, name, price, qty)
                         : new Drink(0, name, price, qty);
 
-                dao.create(item);
+                // Only if user implements the interface CanRestock
+                if (currentUser instanceof CanManageInventory restocker) {
+                    restocker.addMenuItem(item);
+                }
+
                 refreshTableWithAll();
 
             } catch (Exception ex) {
@@ -147,7 +151,6 @@ public class InventoryPanel extends JPanel {
         String type = tableModel.getValueAt(row, 1).toString();
         String name = tableModel.getValueAt(row, 2).toString();
         float price = Float.parseFloat(tableModel.getValueAt(row, 3).toString());
-        
         int qty = (int) tableModel.getValueAt(row, 4);
 
         // Restocking just updates the quantity
@@ -175,7 +178,7 @@ public class InventoryPanel extends JPanel {
                         : new Drink(id, name, price, newQty);
 
                 // Only if user implements the interface CanRestock
-                if (currentUser instanceof CanRestock restocker) {
+                if (currentUser instanceof CanManageInventory restocker) {
                     System.out.println("Restocking menu item...");
                     restocker.restock(item, newQty);
                 }
@@ -197,7 +200,10 @@ public class InventoryPanel extends JPanel {
         }
 
         int id = (int) tableModel.getValueAt(row, 0);
+        String type = tableModel.getValueAt(row, 1).toString();
         String name = tableModel.getValueAt(row, 2).toString();
+        float price = Float.parseFloat(tableModel.getValueAt(row, 3).toString());
+        int qty = (int) tableModel.getValueAt(row, 4);
 
         int confirm = JOptionPane.showConfirmDialog(
                 this,
@@ -206,8 +212,19 @@ public class InventoryPanel extends JPanel {
                 JOptionPane.YES_NO_OPTION
         );
 
+        // Only if user implements the interface CanRestock
         if (confirm == JOptionPane.YES_OPTION) {
-            dao.delete(id);
+            if (currentUser instanceof CanManageInventory restocker) {
+                MenuSnackItem item;
+                if (type.equals("Food")) {
+                    item = new Food(id, name, price, qty);
+                } else {
+                    item = new Drink(id, name, price, qty);
+                }
+
+                restocker.removeMenuItem(item);
+            }
+
             refreshTableWithAll();
         }
     }

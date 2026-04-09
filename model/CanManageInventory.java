@@ -4,6 +4,8 @@
 // behaviour
 package model;
 
-public interface CanRestock {
+public interface CanManageInventory {
+    public void addMenuItem(MenuSnackItem item);
     public void restock(MenuSnackItem item, int amount);
+    public void removeMenuItem(MenuSnackItem item);
 }
