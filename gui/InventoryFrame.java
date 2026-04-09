@@ -1,4 +1,3 @@
-package gui;
 
 import dao.IngredientDAO;
 import java.awt.*;

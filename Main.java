@@ -4,6 +4,7 @@
 
 import db.DB;
 import gui.InventoryFrame;
+import gui.OrderGUI;
 import java.sql.*;
 
 public class Main {
