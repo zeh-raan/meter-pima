@@ -1,5 +1,5 @@
 # 🌶️🫪 Snack POS System
-A Java application to manage **ingredients** in inventory, edit **menu items**, take **orders**, and process **payments** (figuratively).
+A Java application to manage **food and drinks** in inventory, edit **menu items**, take **orders**, and process **payments**.
 
 ## 📦 Prerequisites
 The application requires the following:
@@ -32,10 +32,9 @@ Follow these steps to be able to run the application properly.
     java -classpath ".:sqlite-jdbc-3.51.2.0.jar" --enable-native-access=ALL-UNNAMED Main.java
     ```
 ## **System Flow**
-| Layer             | Role                                             |
-| ----------------- | ------------------------------------------------ |
-| **GUI (Swing)**   | Collects user input and displays output          |
-| **Service Layer** | Handles logic like sync with DAOs and validation |
-| **DAO Layer**     | Executes CRUD operations on database entities.   |
-| **BaseDAO**       | Provides database connection to all DAOs.        |
-| **DB (SQLite)**   | Manages database connection and schema.          |
+| Layer     | Role                                                         |
+| --------- | ------------------------------------------------------------ |
+| **Model** | Represents application data and business logic               |
+| **GUI**   | Collects input, displays data, and interacts with the Model. |
+| **DAO**   | Performs CRUD operations on database entities.               |
+| **DB**    | Manages database connection, schema, and stores data.        | 
