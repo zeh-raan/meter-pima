@@ -1,7 +1,7 @@
 package model;
 
 public class OrderItem {
-    private final MenuSnackItem item;
+    private final MenuSnackItem item; // Composition
     private final int quantity;
 
     public OrderItem(MenuSnackItem item, int quantity) {

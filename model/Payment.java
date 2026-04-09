@@ -10,5 +10,5 @@ public abstract class Payment {
     public float getAmount() { return amount; }
 
     // returns change or 0
-    public abstract float processPayment(float priceToBePaid);
+    public abstract float processPayment(float priceToBePaid); // Abstract
 }

@@ -6,7 +6,7 @@ import java.util.List;
 public class Order {
     private int id;
     private final int cashierId;
-    private final List<OrderItem> items = new ArrayList<>();
+    private final List<OrderItem> items = new ArrayList<>(); // Aggregation
     private Payment payment; // null until paid
     private boolean isPaid = false;
 

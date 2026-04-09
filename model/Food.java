@@ -2,7 +2,7 @@ package model;
 
 public class Food extends MenuSnackItem {
     public Food(int id, String name, float price, int amountInStock) {
-        super(id, name, price, amountInStock);
+        super(id, name, price, amountInStock); // Inheritance
     }
 
     // Abstract from MenuItem

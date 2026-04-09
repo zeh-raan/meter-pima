@@ -10,7 +10,7 @@ public abstract class MenuSnackItem {
     private float price;
     private int amountInStock;
 
-    public abstract String getDetails();
+    public abstract String getDetails(); // Abstract
 
     public MenuSnackItem(int id, String name, float price, int amountInStock) {
         this.id = id;
