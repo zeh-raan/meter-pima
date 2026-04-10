@@ -2,13 +2,12 @@ package gui;
 
 import dao.MenuSnackItemDAO;
 import dao.OrderDAO;
-import model.*;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import model.*;
 
 public class OrderPanel extends JPanel {
 
@@ -63,8 +62,8 @@ public class OrderPanel extends JPanel {
     private void initButtons() {
         JPanel btnPanel = new JPanel();
 
-        JButton addBtn = new JButton("Add to Cart");
-        JButton removeBtn = new JButton("Remove from Cart");
+        JButton addBtn = new JButton("Add to Order");
+        JButton removeBtn = new JButton("Remove from Order");
         JButton checkoutBtn = new JButton("Checkout");
 
         btnPanel.add(addBtn);
