@@ -115,14 +115,14 @@ public class StaffDAO extends BaseDAO implements DAO<Staff> {
                         rs.getString("name"),
                         rs.getString("password")
                     ));
+                } else {
+                    staffs.add(new Staff(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("password"),
+                        rs.getInt("is_admin")
+                    ));
                 }
-
-                staffs.add(new Staff(
-                    rs.getInt("id"),
-                    rs.getString("name"),
-                    rs.getString("password"),
-                    rs.getInt("is_admin")
-                ));
             }
         // Handle error(s)
         } catch (SQLException e) {

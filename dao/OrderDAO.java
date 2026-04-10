@@ -1,19 +1,17 @@
 package dao;
 
-import db.DB;
-import model.*;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import model.*;
 
-public class OrderDAO implements DAO<Order> {
+public class OrderDAO extends BaseDAO implements DAO<Order> {
 
     @Override
     public void create(Order order) {
-        try (Connection conn = DB.getConnection()) {
+        try {
             // Insert order without payment yet
-            PreparedStatement stmt = conn.prepareStatement(
+            PreparedStatement stmt = getConnection().prepareStatement(
                     "INSERT INTO Orders(cashier_id, total_price, is_paid) VALUES (?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS
             );
@@ -29,7 +27,7 @@ public class OrderDAO implements DAO<Order> {
 
                 // Insert order items
                 for (OrderItem item : order.getItems()) {
-                    PreparedStatement itemStmt = conn.prepareStatement(
+                    PreparedStatement itemStmt = getConnection().prepareStatement(
                         "INSERT INTO OrderItems(order_id, menu_item_id, quantity, price) VALUES (?, ?, ?, ?)"
                     );
                     itemStmt.setInt(1, orderId);
@@ -50,9 +48,9 @@ public class OrderDAO implements DAO<Order> {
 
     // Update order after payment
     public void markAsPaid(Order order, Payment payment) {
-        try (Connection conn = DB.getConnection()) {
+        try {
             // Update payment info
-            PreparedStatement stmt = conn.prepareStatement(
+            PreparedStatement stmt = getConnection().prepareStatement(
                 "UPDATE Orders SET is_paid = ?, payment_type = ?, payment_amount = ? WHERE id = ?"
             );
             stmt.setBoolean(1, true);
@@ -64,7 +62,7 @@ public class OrderDAO implements DAO<Order> {
 
             // Update inventory
             for (OrderItem item : order.getItems()) {
-                PreparedStatement stockStmt = conn.prepareStatement(
+                PreparedStatement stockStmt = getConnection().prepareStatement(
                     "UPDATE Menu SET quantity = quantity - ? WHERE id = ?"
                 );
                 stockStmt.setInt(1, item.getQuantity());
